@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My First Trip To</title>
+    <script>
+      // GitHub Pages serves this file for unknown paths. Save the requested
+      // URL and bounce to the app root, where index.html restores it.
+      sessionStorage.setItem(
+        'spa-redirect',
+        location.pathname + location.search + location.hash
+      )
+      location.replace('/')
+    </script>
+  </head>
+  <body></body>
+</html>
