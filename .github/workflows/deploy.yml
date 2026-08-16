@@ -19,6 +19,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -26,8 +29,10 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          VITE_SUPABASE_URL: ${{ vars.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ vars.VITE_SUPABASE_ANON_KEY }}
+          # The Supabase URL and anon key are public client-side values;
+          # data access is protected by row-level security rules, not by these.
+          VITE_SUPABASE_URL: https://ehpavdhqbeesaejutzoc.supabase.co
+          VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVocGF2ZGhxYmVlc2FlanV0em9jIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY4OTUwMDIsImV4cCI6MjEwMjQ3MTAwMn0.dSPAlrH4ysCIs0sbID3UAmZWv8i0iOxNrSw5KtlWKzE
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
